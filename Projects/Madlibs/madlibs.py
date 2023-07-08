@@ -26,3 +26,5 @@ Einstein came to America to take a post at Princeton Institute for\
 {plural4}, where his theories helped America devise the first\
 atomic {noun3}. There is no question about it: Einstein was\
 one of the most brilliant {profession} of our time.'
+
+print(madlib)
