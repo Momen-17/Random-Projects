@@ -10,3 +10,4 @@ Recreating some beginner Python projects
 |4|[Rock Paper Scissors](https://youtu.be/8ext9G7xspg?t=1274)|[rock_paper_scissors.py](https://github.com/Momen-17/Beginner-Python-Projects/blob/master/Projects/Rock%20Paper%20Scissors/rock_paper_scissors.py)|
 |5|[Hangman](https://youtu.be/8ext9G7xspg?t=1465)|[hangman.py](https://github.com/Momen-17/Beginner-Python-Projects/blob/master/Projects/Hangman/hangman.py)|
 |6|[Tic-Tac-Toe](https://youtu.be/8ext9G7xspg)|[tictactoe.py]()|
+|6.1|[Tic-Tac-Toe](https://www.youtube.com/watch?v=pc7XhHxSgrM&list=PLr-iRXN7HiJgJzMX22AVw4IU8ZOR4JS97&pp=iAQB)|[tictactoe.py (pygame version)]()|
