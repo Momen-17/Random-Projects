@@ -11,3 +11,5 @@ Recreating some beginner Python projects
 |5|[Hangman](https://youtu.be/8ext9G7xspg?t=1465)|[hangman.py](https://github.com/Momen-17/Beginner-Python-Projects/blob/master/Projects/Hangman/hangman.py)|
 |6|[Tic-Tac-Toe](https://youtu.be/8ext9G7xspg)|[tictactoe.py](https://github.com/Momen-17/Beginner-Python-Projects/blob/master/Projects/Tic-Tac-Toe/tictactoe.py)|
 |6.1|[Tic-Tac-Toe (pygame version)](https://www.youtube.com/watch?v=pc7XhHxSgrM&list=PLr-iRXN7HiJgJzMX22AVw4IU8ZOR4JS97&pp=iAQB)|[tictactoe.py](https://github.com/Momen-17/Beginner-Python-Projects/blob/master/Projects/Tic-Tac-Toe%20(pygame)/tictactoe.py)|
+|7|[Tic-Tac-Toe-AI](https://youtu.be/8ext9G7xspg)|[tictactoe.py](https://github.com/Momen-17/Beginner-Python-Projects/blob/master/Projects/TIC-TAC-TOE-AI/tictactoe.py)|
+|7.1|[Tic-Tac-Toe-AI (pygame version)](https://youtu.be/Bk9hlNZc6sE)|[tictactoe.py](https://github.com/Momen-17/Beginner-Python-Projects/blob/master/Projects/TIC-TAC-TOE-AI%20(pygame)/tictactoe.py)|
