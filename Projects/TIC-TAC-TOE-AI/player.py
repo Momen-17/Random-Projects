@@ -1,86 +1,140 @@
 import math
 import random
+from copy import deepcopy
 
 
-# Create base Player class
 class Player:
     def __init__(self, letter):
-        self.letter = letter # X or O
-    
-    def get_move(self, game):
-        pass
+        self.letter = letter
 
 
-# Create child HumanPlayer class
 class HumanPlayer(Player):
-    def __init__(self, letter):
-        super().__init__(letter)
-    
     def get_move(self, game):
-        # Loop until valid input is given
+        # Loop until a valid move is given
         while True:
             try:
-                # Prompt user for move
-                square = int(input(f'{self.letter}\'s turn. Input move (0-8): '))
+                # Prompt player for move
+                square = int(input(f'{self.letter}\'s turn. input move (0-8): '))
                 # Validate input
                 if square not in game.available_squares():
                     raise ValueError
                 return square
             # Handle invalid input
-            except ValueError:
-                print('Invalid move. Try again.')
+            except:
+                print('Invalid square. Try again.')
 
-# Create child RandomComputerPlayer class
-class RandomComputerPlayer(Player):
+
+class EasyAIPlayer(Player):
     def __init__(self, letter):
         super().__init__(letter)
+        self.other_letter = 'X' if letter == 'O' else 'O'
     
     def get_move(self, game):
-        # Pick a random valid move
+        winning_squares, blocking_squares = [], []
+        available_squares = game.available_squares()
+        
+        
+        if len(available_squares) in [1, 7, 8, 9]:
+            return random.choice(available_squares)
+        
+        # Check for winning squares
+        for square in available_squares:
+            board = deepcopy(game.board)
+            board[square] = self.letter
+            if game.winner(square, self.letter, board):
+                winning_squares.append(square)
+        
+        # Check for blocking squares:
+        for square in available_squares:
+            board = deepcopy(game.board)
+            board[square] = self.other_letter
+            if game.winner(square, self.other_letter, board):
+                blocking_squares.append(square)
+        
+        filtered_squares = [square for square in available_squares
+        if square not in winning_squares and square not in blocking_squares]
+        
+        if filtered_squares:
+            return random.choice(filtered_squares)
+        elif blocking_squares:
+            blocking_not_winning = [square for square in blocking_squares if square not in winning_squares] 
+            return random.choice(blocking_not_winning) if blocking_not_winning else random.choice(blocking_squares)
+        else:
+            return random.choice(winning_squares)
+
+
+class RandomAIPlayer(Player):
+    def get_move(self, game):
         return random.choice(game.available_squares())
 
 
-# Create child SmartComputerPlayer class
-class SmartComputerPlayer(Player):
+class MediumAIPlayer(Player):
     def __init__(self, letter):
         super().__init__(letter)
+        self.other_letter = 'X' if letter == 'O' else 'O'
     
     def get_move(self, game):
-        # Pick a corner square if board is empty
-        if game.num_empty_squares() == 9:
-            return random.choice([0, 2, 6, 8])
+        winning_squares, blocking_squares = [], []
+        available_squares = game.available_squares()
         
-        # Pick the optimal move using minimax algorithm
-        return self.minimax(game, self.letter)['position']
+        
+        if len(available_squares) in [1, 7, 8, 9]:
+            return random.choice(available_squares)
+        
+        # Check for winning squares
+        for square in available_squares:
+            board = deepcopy(game.board)
+            board[square] = self.letter
+            if game.winner(square, self.letter, board):
+                winning_squares.append(square)
+        
+        # Check for blocking squares:
+        for square in available_squares:
+            board = deepcopy(game.board)
+            board[square] = self.other_letter
+            if game.winner(square, self.other_letter, board):
+                blocking_squares.append(square)
+        
+        if winning_squares:
+            return random.choice(winning_squares)
+        elif blocking_squares:
+            return random.choice(blocking_squares)
+        else:
+            return random.choice(available_squares)
+
+
+class UnbeatableAIPlayer(Player):
+    def get_move(self, game):
+        if len(game.available_squares()) == 9:
+            probablities = [1/6, 1/10, 1/6, 1/10, 1/10, 1/10, 1/6, 1/10, 1/6]
+            return random.choices(game.available_squares(), probablities)[0]
+        else:
+            return self.minimax(game, self.letter)['position']
     
-    # Implement the minimax algorithm
-    def minimax(self, state, player):
-        max_player = self.letter
+    def minimax(self, game, player):
+        maximizer = self.letter
         other_player = 'X' if player == 'O' else 'O'
         
-        # Base condition
-        if state.current_winner == other_player:
+        # Terminal case
+        if game.current_winner == other_player:
             return {'position': None,
-                    'score': 1 * (state.num_empty_squares() + 1) if other_player == max_player
-                    else -1 * (state.num_empty_squares() + 1)}
-        elif not state.empty_squares():
+                    'score': 1 * (len(game.available_squares()) + 1) if other_player == maximizer
+                    else -1 * (len(game.available_squares()) + 1)}
+        elif not game.still_running():
             return {'position': None, 'score': 0}
         
-        if player == max_player:
-            best = {'position': None, 'score': -math.inf}
-        else:
-            best = {'position': None, 'score': math.inf}
+        best = {'position': None, 'score': -math.inf if player == maximizer else math.inf}
         
-        for possible_move in state.available_squares():
-            state.make_move(possible_move, player)
-            sim_score = self.minimax(state, other_player)
+        for square in game.available_squares():
+            game.make_move(square, player)
+            sim_score = self.minimax(game, other_player)
             
             # Undo move
-            state.board[possible_move] = ' '
-            state.current_winner = None
-            sim_score['position'] = possible_move
+            game.board[square] = ' '
+            game.current_winner = None
+            sim_score['position'] = square
             
-            if player == max_player:
+            if player == maximizer:
                 if sim_score['score'] > best['score']:
                     best = sim_score
             else:
@@ -88,3 +142,14 @@ class SmartComputerPlayer(Player):
                     best = sim_score
         
         return best
+
+
+class ChallengingAIPlayer(Player):
+    def get_move(self, game):
+        players = [EasyAIPlayer(self.letter).get_move(game),
+                RandomAIPlayer(self.letter).get_move(game),
+                MediumAIPlayer(self.letter).get_move(game),
+                UnbeatableAIPlayer(self.letter).get_move(game)]
+        probabilities = [0.1, 0.1, 0.2, 0.6]
+        
+        return random.choices(players, probabilities)[0]
