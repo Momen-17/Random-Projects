@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="Images/Icon/movie.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieBest</title>
+</head>
+<body class="index-page">
+    <header>
+        <a href="/index.html" class="logo">MovieBest</a>
+        <ul>
+            <li><a href="/index.html" class="active">Home</a></li>
+            <li><a href="Pages/about.html">About</a></li>
+            <!-- <li><a href="#">Random</a></li> -->
+            <li><a href="Pages/contact.html">Contact</a></li>
+        </ul>
+    </header>
+    <section>
+        <img src="Images/Section/stars.png" id="stars">
+        <img src="Images/Section/moon.png" id="moon">
+        <img src="Images/Section/mountains_behind.png" id="mountains_behind">
+        <h2 id="welcome_text">Welcome to MovieBest</h2>
+        <a href="#main_section" id="explore_button">Explore</a>
+        <img src="Images/Section/mountains_front.png" id="mountains_front">
+    </section>
+    <div class="main_section" id="main_section">
+        <h2>Movie Categories</h2>
+        <div class="cetegories-cards">
+            <div class="category-card">
+                <a href="Pages/action.html">
+                    <img src="Images/Categories/Action/Action.jpg" alt="Action Movies">
+                    <h3>Action</h3>
+                </a>
+            </div>
+            <div class="category-card">
+                <a href="Pages/comedy.html">
+                    <img src="Images/Categories/Comedy/Comedy.jpg" alt="Comedy Movies">
+                    <h3>Comedy</h3>
+                </a>
+            </div>
+            <div class="category-card">
+                <a href="Pages/drama.html">
+                    <img src="Images/Categories/Drama/Drama.jpg" alt="Drama Movies">
+                    <h3>Drama</h3>
+                </a>
+            </div>
+            <div class="category-card">
+                <a href="Pages/horron.html">
+                    <img src="Images/Categories/Horror/Horror.jpg" alt="Horror Movies">
+                    <h3>Horror</h3>
+                </a>
+            </div>
+            <div class="category-card">
+                <a href="Pages/mystery.html">
+                    <img src="Images/Categories/Mystery/Mystery.jpeg" alt="Mystery Movies">
+                    <h3>Mystery</h3>
+                </a>
+            </div>
+            <div class="category-card">
+                <a href="Pages/romance.html">
+                    <img src="Images/Categories/Romance/Romance.jpeg" alt="Romance Movies">
+                    <h3>Romance</h3>
+                </a>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2023 MovieBest. All rights reserved.</p>
+    </footer>
+    <script>
+        let moon = document.getElementById('moon')
+        let stars = document.getElementById('stars')
+        let mountains_behind = document.getElementById('mountains_behind')
+        let welcome_text = document.getElementById('welcome_text')
+        let explore_button = document.getElementById('explore_button')
+        let mountains_front = document.getElementById('mountains_front')
+        let header = document.querySelector('header')
+
+        window.addEventListener('scroll', function() {
+            let value = window.scrollY;
+            stars.style.left = value * 0.25 + 'px';
+            moon.style.top = value * 1.05 + 'px';
+            mountains_behind.style.top = value * 0.5 + 'px';
+            mountains_front.style.top = value * 0 + 'px';
+            welcome_text.style.marginRight = value * 2 + 'px';
+            welcome_text.style.marginTop = value * 1 + 'px';
+            explore_button.style.marginTop = value * 1 + 'px';
+            header.style.top = value * 0.5 + 'px';
+        })
+    </script>
+</body>
+</html>
