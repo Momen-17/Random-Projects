@@ -3,7 +3,7 @@ Recreating some beginner Python projects
 ## Projects
 
 |#|Project|
-|-|---------------|----------|
+|-|---------------|
 |1|[madlibs.py](https://github.com/Momen-17/Random-Projects/blob/master/Projects/Madlibs/madlibs.py)|
 |2|[computer_guess.py](https://github.com/Momen-17/Random-Projects/blob/master/Projects/Guess%20the%20Number%20(Computer)/computer_guess.py)|
 |3|[user_guess.py](https://github.com/Momen-17/Random-Projects/blob/master/Projects/Guess%20the%20Number%20(User)/user_guess.py)|
