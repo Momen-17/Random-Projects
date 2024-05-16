@@ -16,3 +16,4 @@ Recreating some beginner Python projects
 |10|[search.py](https://github.com/Momen-17/Random-Projects/blob/master/Projects/Search%20Algorithm/search.py)|
 |11|[Sudoku Solver](https://github.com/Momen-17/Random-Projects/tree/master/Projects/Sudoku%20Solver)|
 |12|[Temperature Converter](https://github.com/Momen-17/Random-Projects/blob/master/Projects/Temperature%20Converter/converter.py)|
+|12|[Web Project 1.0](https://github.com/Momen-17/Random-Projects/blob/master/Projects/1.%20Web%20Project/index.html)|
