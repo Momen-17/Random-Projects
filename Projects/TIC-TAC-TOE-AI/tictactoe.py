@@ -102,7 +102,7 @@ if __name__ == '__main__':
     ties = 0
     for _ in range(1000):
         game = TicTacToe()
-        x_player = UnbeatableAIPlayer('X')
+        x_player = HumanPlayer('X')
         o_player = UnbeatableAIPlayer('O')
         result = play(game, x_player, o_player, False)
         if result == 'X':
